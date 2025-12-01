@@ -40,4 +40,4 @@ def get_xa():
         
 if __name__ == '__main__':
     # Đảm bảo bạn đang sử dụng port 5000 hoặc bất kỳ port nào bạn muốn
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=3001)
