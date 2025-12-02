@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, render_template, request
 from supabase import create_client, Client
 
 # --- Cấu hình Supabase (Thay thế bằng thông tin của bạn) ---
@@ -15,11 +15,18 @@ except Exception as e:
     # Nếu đang chạy trong môi trường production, bạn có thể dừng ứng dụng
     # hoặc xử lý lỗi khác.
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 def fetch_table(table_name: str):
     try:
         response = supabase.table(table_name).select("*").execute()
+        return True, response.data
+    except Exception as e:
+        return False, str(e)
+    
+def fetch_xa_by_tinh(tinh_id: str):
+    try:
+        response = supabase.table('xa').select("*").eq('tinh_id', tinh_id).execute()
         return True, response.data
     except Exception as e:
         return False, str(e)
@@ -37,7 +44,18 @@ def get_xa():
     if not ok:
         return jsonify({"success": False, "message": f"Lỗi khi lấy dữ liệu 'xa': {result}"}), 500
     return jsonify({"success": True, "table": "xa", "data": result}), 200
-        
+
+@app.route('/api/dvhc/xa/<tinh_id>', methods=['GET'])
+def get_xa_thuoc_tinh(tinh_id):
+    ok, result = fetch_xa_by_tinh(tinh_id)
+    if not ok:
+        return jsonify({"success": False, "message": f"Lỗi khi lấy dữ liệu 'xa': {result}"}), 500
+    return jsonify({"success": True, "table": "xa", "data": result}), 200
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+  
 if __name__ == '__main__':
     # Đảm bảo bạn đang sử dụng port 5000 hoặc bất kỳ port nào bạn muốn
-    app.run(debug=True, port=3001)
+    app.run(debug=True, port=3005)

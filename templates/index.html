@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Tra Cứu Mã Bưu Chính Việt Nam{% endblock %}
+
+{% block content %}
+
+<div class="hero-section">
+    <h2 class="text-center">TRA CỨU MÃ BƯU CHÍNH MỚI NHẤT</h2>
+    <p class="text-center subtitle">Tra cứu mã bưu chính theo Tỉnh/Thành phố và Xã/Phường/Thị trấn</p>
+</div>
+
+<div class="search-container">
+    <fieldset class="search-fieldset">
+        <legend>🔍 Thông Tin Tra Cứu</legend>
+        
+        <div class="form-group">
+            <label for="selectTinh">Tỉnh/Thành phố: <span class="required">*</span></label>
+            <select name="selectTinh" id="selectTinh" class="form-control">
+                <option value="">-- Chọn Tỉnh/Thành phố --</option>
+            </select>
+            <div class="loading" id="loadingTinh" style="display: none;">
+                <span>Đang tải dữ liệu...</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="selectXa">Xã/Phường/Thị trấn: <span class="required">*</span></label>
+            <select name="selectXa" id="selectXa" class="form-control" disabled>
+                <option value="">-- Vui lòng chọn Tỉnh/Thành phố trước --</option>
+            </select>
+            <div class="loading" id="loadingXa" style="display: none;">
+                <span>Đang tải dữ liệu...</span>
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="button" id="btnSearch" class="btn btn-secondary">
+                🔎 Tra Cứu
+            </button>
+            <button type="button" id="btnReset" class="btn btn-secondary">
+                🔄 Làm Mới
+            </button>
+        </div>
+    </fieldset>
+</div>
+
+<div id="resultContainer" class="result-container" style="display: none;">
+    <h3 class="text-center">📋 Kết Quả Tra Cứu</h3>
+    <div id="resultContent" class="result-content"></div>
+</div>
+
+<div class="info-section">
+    <h3>📌 Hướng Dẫn Sử Dụng</h3>
+    <ol>
+        <li>Chọn <strong>Tỉnh/Thành phố</strong> từ danh sách</li>
+        <li>Sau khi chọn tỉnh, danh sách <strong>Xã/Phường/Thị trấn</strong> sẽ được tải tự động</li>
+        <li>Chọn <strong>Xã/Phường/Thị trấn</strong> muốn tra cứu</li>
+        <li>Nhấn nút <strong>"Tra Cứu"</strong> để xem thông tin mã bưu chính, địa lý và dân số</li>
+    </ol>
+    
+    <div class="note">
+        <strong>⚠️ Lưu ý:</strong> Dữ liệu được cập nhật từ hệ thống đơn vị hành chính quốc gia. Mã bưu chính có thể cập nhập thời gian thực.
+    </div>
+</div>
+
+{% endblock %}
