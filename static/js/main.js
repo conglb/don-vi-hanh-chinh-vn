@@ -28,7 +28,7 @@ function setupEventListeners() {
     btnReset.addEventListener('click', handleReset);
 }
 
-// Load Province Data
+// Load TINH Data
 async function loadTinhData() {
     try {
         showLoading(loadingTinh, true);
@@ -51,7 +51,7 @@ async function loadTinhData() {
     }
 }
 
-// Populate Province Select
+// Populate TINH Select
 function populateTinhSelect(data) {
     selectTinh.innerHTML = '<option value="">-- Chọn Tỉnh/Thành phố --</option>';
     
@@ -70,11 +70,11 @@ function populateTinhSelect(data) {
     });
 }
 
-// Handle Province Change
+// Handle TINH Change
 async function handleTinhChange(e) {
     const tinhId = e.target.value;
     
-    // Reset xa select
+    // Reset XA select
     selectXa.innerHTML = '<option value="">-- Vui lòng chọn Tỉnh/Thành phố trước --</option>';
     selectXa.disabled = true;
     btnSearch.disabled = true;
@@ -89,11 +89,11 @@ async function handleTinhChange(e) {
     // Find selected province
     selectedTinh = tinhData.find(t => (t.id || t.tinh_id) == tinhId);
 
-    // Load xa data
+    // Load XA data
     await loadXaData(tinhId);
 }
 
-// Load Commune Data
+// Load XA Data
 async function loadXaData(tinhId) {
     try {
         showLoading(loadingXa, true);
@@ -118,7 +118,7 @@ async function loadXaData(tinhId) {
     }
 }
 
-// Populate Commune Select
+// Populate XA Select
 function populateXaSelect(data) {
     selectXa.innerHTML = '<option value="">-- Chọn Xã/Phường/Thị trấn --</option>';
     
@@ -144,7 +144,7 @@ function populateXaSelect(data) {
     selectXa.disabled = false;
 }
 
-// Handle Commune Change
+// Handle XA Change
 function handleXaChange(e) {
     const xaId = e.target.value;
     
@@ -164,7 +164,7 @@ function handleSearch() {
         showError('Vui lòng chọn đầy đủ thông tin!');
         return;
     }
-
+    
     displayResult();
 }
 
@@ -172,7 +172,7 @@ function handleSearch() {
 function displayResult() {
     const tinhName = selectedTinh.ten_tinh || selectedTinh.name || 'N/A';
     const xaName = selectedXa.ten_xa || selectedXa.name || 'N/A';
-    const mabuuchinh = selectedXa.mabuuchinh || selectedXa.zip_code || 'Chưa cập nhật';
+    const mabuuchinh = selectedXa.postal_code || selectedXa.zip_code || 'Chưa cập nhật';
     const huyenName = selectedXa.ten_huyen || selectedXa.district || 'N/A';
 
     const resultHTML = `

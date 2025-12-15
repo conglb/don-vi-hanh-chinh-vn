@@ -31,6 +31,15 @@ def fetch_xa_by_tinh(tinh_id: str):
     except Exception as e:
         return False, str(e)
 
+def fetch_postal_code_by_xa(xa_id: str):
+    try:
+        response = supabase.table('xa').select("*").eq('id', xa_id).execute()
+        if response.data and len(response.data) > 0:
+            return True, response.data[0]
+        return False, "Không tìm thấy dữ liệu"
+    except Exception as e:
+        return False, str(e)
+
 @app.route('/api/dvhc/tinh', methods=['GET'])
 def get_tinh():
     ok, result = fetch_table('tinh')
@@ -52,7 +61,14 @@ def get_xa_thuoc_tinh(tinh_id):
         return jsonify({"success": False, "message": f"Lỗi khi lấy dữ liệu 'xa': {result}"}), 500
     return jsonify({"success": True, "table": "xa", "data": result}), 200
 
-@app.route('/')
+@app.route('/api/dvhc/postal-code/<xa_id>', methods=['GET'])
+def get_postal_code(xa_id):
+    ok, result = fetch_postal_code_by_xa(xa_id)
+    if not ok:
+        return jsonify({"success": False, "message": f"Lỗi khi lấy mã bưu chính: {result}"}), 500
+    return jsonify({"success": True, "data": result}), 200
+
+@app.route('/api/dvhc', methods=['GET'])
 def index():
     return render_template('index.html')
   
