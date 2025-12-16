@@ -68,7 +68,15 @@ def get_postal_code(xa_id):
         return jsonify({"success": False, "message": f"Lỗi khi lấy mã bưu chính: {result}"}), 500
     return jsonify({"success": True, "data": result}), 200
 
-@app.route('/api/dvhc', methods=['GET'])
+@app.route('/api/dvhc/tra-cuu-don-vi-hanh-chinh-moi', methods=['GET'])
+def index():
+    return render_template('index.html')
+
+@app.route('/api/dvhc/tra-cuu-ma-buu-chinh', methods=['GET'])
+def index():
+    return render_template('index.html')
+
+@app.route('/api/dvhc/trang-chu', methods=['GET'])
 def index():
     return render_template('index.html')
   
