@@ -69,15 +69,15 @@ def get_postal_code(xa_id):
     return jsonify({"success": True, "data": result}), 200
 
 @app.route('/api/dvhc/tra-cuu-don-vi-hanh-chinh-moi', methods=['GET'])
-def index():
+def page_tra_cuu_don_vi_hanh_chinh_moi():
     return render_template('index.html')
 
 @app.route('/api/dvhc/tra-cuu-ma-buu-chinh', methods=['GET'])
-def index():
+def page_tra_cuu_ma_buu_chinh():
     return render_template('index.html')
 
 @app.route('/api/dvhc/trang-chu', methods=['GET'])
-def index():
+def page_trang_chu():
     return render_template('index.html')
   
 if __name__ == '__main__':
