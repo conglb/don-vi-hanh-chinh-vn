@@ -77,7 +77,7 @@ def page_tra_cuu_ma_buu_chinh():
     return render_template('index.html')
 
 @app.route('/api/dvhc/trang-chu', methods=['GET'])
-def page_trang_chu():
+def index():
     return render_template('index.html')
   
 if __name__ == '__main__':
