@@ -72,19 +72,19 @@ def get_postal_code(xa_id):
 def page_tra_cuu_don_vi_hanh_chinh_moi():
     return render_template('index.html', 
                            title="Tra cứu Đơn vị Hành chính Mới nhất 2025",
-                           meta_desc="Công cụ tra cứu đơn vị hành chính Việt Nam...")
+                           meta_desc="Công cụ tra cứu đơn vị hành chính Việt Nam sau sáp nhập mới nhất")
 
 @app.route('/api/dvhc/tra-cuu-ma-buu-chinh', methods=['GET'])
 def page_tra_cuu_ma_buu_chinh():
     return render_template('index.html', 
                            title="Tra cứu Mã Bưu Chính (Zip Code) nhanh chóng",
-                           meta_desc="Tìm kiếm mã bưu chính các tỉnh thành...")
+                           meta_desc="Tìm kiếm mã bưu chính các tỉnh thành, quận huyện, xã phường")
 
 @app.route('/api/dvhc/trang-chu', methods=['GET'])
 def index():
     return render_template('index.html', 
-                           title="Đơn vị Hành chính Mới nhất",
-                           meta_desc="Tra cứu đơn vị hành chính Việt Nam sau xát nhập")
+                           title="Đơn vị Hành chính Hai Cấp",
+                           meta_desc="Tra cứu đơn vị hành chính Việt Nam sau sáp nhập")
   
 if __name__ == '__main__':
     # Đảm bảo bạn đang sử dụng port 5000 hoặc bất kỳ port nào bạn muốn

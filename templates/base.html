@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tra cứu mã bưu chính và đơn vị hành chính Việt Nam">
-    <title>{% block title %}Tra Cứu Đơn Vị Hành Chính Việt Nam (mới){% endblock %}</title>
+    <title>{% block title %}{{ title|default('Tra Cứu Đơn Vị Hành Chính Việt Nam (mới)') }}{% endblock %}</title>
+    <meta name="description" content="{{ meta_desc|default('Tra cứu mã bưu chính và đơn vị hành chính Việt Nam mới nhất') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block extra_css %}{% endblock %}
 </head>
